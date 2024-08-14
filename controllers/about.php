@@ -2,6 +2,8 @@
 
 // require "functions.php";
 
-$heading = "About";
-
-require "views/about.view.php";
+$config = require base_path('config.php');
+// dumpAndDie($config);
+view("about.view.php", [
+    'heading' => 'About Us',
+]);

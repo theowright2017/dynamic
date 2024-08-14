@@ -2,6 +2,8 @@
 
 // require "functions.php";
 
-$heading = "Home";
+$config = require base_path('config.php');
 
-require "views/index.view.php";
+view("index.view.php", [
+    'heading' => 'Home',
+]);

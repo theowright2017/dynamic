@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dynamic</title>
-    <script src="<?= $config['tailwindcss']; ?>"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="h-full">

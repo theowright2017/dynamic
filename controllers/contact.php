@@ -2,8 +2,8 @@
 
 // require "functions.php";
 
-$heading = "Contact";
+$config = require base_path('config.php');
 
-// dumpAndDie($config);
-
-require "views/contact.view.php"; 
+view("contact.view.php", [
+    'heading' => 'Contact Us',
+]);

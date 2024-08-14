@@ -2,12 +2,16 @@
 
 // require "functions.php";
 
-$config = require "config.php";
+$config = require base_path('config.php');
+// dumpAndDie($config);
 $db = new Database($config['database']);
 
-$heading = "Notes";
+
 
 $notes = $db->query("select * from notes", [])->findAllOrFail();
 // dumpAndDie($notes);
 
-require "views/notes.view.php";
+view("notes/index.view.php", [
+    'heading' => 'My Notes',
+    'notes' => $notes
+]);
