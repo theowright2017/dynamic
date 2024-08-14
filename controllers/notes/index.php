@@ -1,6 +1,7 @@
 <?php
 
 // require "functions.php";
+use core\Database;
 
 $config = require base_path('config.php');
 // dumpAndDie($config);

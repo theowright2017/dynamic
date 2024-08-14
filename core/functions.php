@@ -1,7 +1,10 @@
 <?php
+
+use core\Response; 
+
 function dumpAndDie($value) {
     echo '<pre>';
-    var_dump($value);
+    // var_dump($value);
     echo '</pre>';
     die();
 }
@@ -17,6 +20,8 @@ function authorize($condition, $status = Response::FORBIDDEN) {
         var_dump($status);
         abort($status);
     }
+
+    return true;
 };
 
 function base_path($path) {
@@ -27,7 +32,7 @@ function view($path, $attributes = [])
 {
     extract($attributes);
     
-    var_dump($heading);
-    var_dump('hello');
+    var_dump('he---', $heading);
+    // var_dump('hello');
     require base_path('views/' . $path);
 }
