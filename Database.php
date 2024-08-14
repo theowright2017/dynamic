@@ -1,9 +1,12 @@
 <?php
 
-class Database {
+class Database
+{
     public $connection;
-    public function __construct($config, $username = 'root', $password = 'newpassword') {
-     
+    public $statement;
+    public function __construct($config, $username = 'root', $password = 'newpassword')
+    {
+
 
         $configString = "mysql:" . http_build_query($config, '', ';');
 
@@ -13,13 +16,45 @@ class Database {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
     }
-    public function queryAll($query, $params = []) {
-    
-        
-        $statement = $this->connection->prepare($query);
-        
-        $statement->execute($params);
-        
-        return $statement->fetchAll();
+    public function query($query, $params = [])
+    {
+
+
+        $this->statement = $this->connection->prepare($query);
+
+        $this->statement->execute($params);
+
+        return $this;
     }
-};
+    // public function query($query, $params = []) {
+    //     $statement = $this->connection->prepare($query);
+    //     $statement->execute($params);
+    //     return $statement->fetch();
+    // }
+
+    public function findAll() {
+        return $this->statement->fetchAll();
+    }
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+        if (! $result) {
+            abort();
+        }
+        return $result;
+    }
+    public function findAllOrFail()
+    {
+        $result = $this->findAll();
+        if (! $result) {
+            abort();
+        }
+        return $result;
+    }
+}
+;

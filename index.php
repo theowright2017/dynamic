@@ -1,30 +1,44 @@
 <?php
 
+$config = require "config.php";
+
 require "functions.php";
-// require "router.php";
 require "Database.php";
+require "Response.php";
+require "router.php";
+
 
 // connect to db and execute query
-$config = require "config.php";
+
 
 
 
 $db = new Database($config['database']);
 
-$id = $_GET['id'];
-$query = "select * from posts where id = :id";
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+
+
+if ($id) {
+    $params = [$id];
+    $query = "select * from notes where id = ?";
+} else {
+    $params = [];
+    $query = "select * from notes";
+}
 
 
 /**
  * bound parameters to prevent SQL injection
  *   - provide query and param separately
  */
-$posts = $db->queryAll($query, [':id' => $id]);
+$posts = $db->query($query, $params)->findAllOrFail();
 
 
 
-foreach ($posts as $post) {
-    echo "<li>{$post['title']}</li>";
-}
+// foreach ($posts as $post) {
+//     echo "<li>{$post['title']}</li>";
+// }
 
 // dumpAndDie($posts);

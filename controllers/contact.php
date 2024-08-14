@@ -4,4 +4,6 @@
 
 $heading = "Contact";
 
+// dumpAndDie($config);
+
 require "views/contact.view.php"; 
