@@ -1,6 +1,6 @@
 <?php
 
-use core\Response; 
+use Core\Response; 
 
 function dumpAndDie($value) {
     echo '<pre>';
@@ -17,7 +17,7 @@ function urlIs($url) {
 
 function authorize($condition, $status = Response::FORBIDDEN) {
     if (! $condition) {
-        var_dump($status);
+        // var_dump($status);
         abort($status);
     }
 
@@ -41,7 +41,7 @@ function view($path, $attributes = [])
 {
     extract($attributes);
     
-    var_dump('he---', $heading);
+    // var_dump('he---', $heading);
     // var_dump('hello');
     require base_path('views/' . $path);
 }

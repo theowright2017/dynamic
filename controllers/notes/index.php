@@ -1,11 +1,10 @@
 <?php
 
 // require "functions.php";
-use core\Database;
+use Core\Database;
+use Core\App;
 
-$config = require base_path('config.php');
-// dumpAndDie($config);
-$db = new Database($config['database']);
+$db = App::resolve(Database::class);
 
 
 
